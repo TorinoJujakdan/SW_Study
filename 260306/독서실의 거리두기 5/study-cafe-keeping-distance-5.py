@@ -18,7 +18,7 @@ ans = 0
 for i in range(n):
     if seat[i] == "0":
         seat[i] = '1'
-        ans = max(ans, min_dist())
+        ans = max(ans, min_distance())
         seat[i] = "0"
 
 print(ans)
