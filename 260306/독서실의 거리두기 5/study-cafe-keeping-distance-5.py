@@ -1,5 +1,5 @@
 n = int(input())
-seat = input()
+seat = list(input())
 
 # Please write your code here.
 
@@ -20,4 +20,5 @@ for i in range(n):
         seat[i] = '1'
         ans = max(ans, min_dist())
         seat[i] = "0"
+
 print(ans)
