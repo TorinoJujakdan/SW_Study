@@ -1,27 +1,21 @@
-from collections import deque
-
-
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
 n = int(input())
-graph = [[] for _ in range(n + 1)]
-parents = [0] * (n+1)
+visited = [0] * (n+1)
+graph = [[] for _ in range(n+1)]
 
-# 인접 리스트
 for _ in range(n-1):
-    u, v = map(int,input().split())
-    graph[u].append(v)
-    graph[v].append(u)
+    a, b = map(int, input().split())
+    graph[a].append(b)
+    graph[b].append(a)
 
-def bfs(start):
-    q = deque([start])
-    parents[start] = -1
+def dfs(v):
+    for next_node in graph[v]:
+        if visited[next_node] == 0:
+            visited[next_node] = v
+            dfs(next_node)
 
-    while q:
-        now = q.popleft()
-        for next_node in graph[now]:
-            if parents[next_node] == 0:
-                parents[next_node] = now
-                q.append(next_node)
-
-bfs(1)
-for i in range(2, n + 1):
-    print(parents[i])
+dfs(1)
+for i in range(2, n+1):
+    print(visited[i])
