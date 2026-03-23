@@ -1,18 +1,17 @@
-n, m = map(int, input().split())
+import sys
+sys.setrecursionlimit(10 ** 6)
+input = sys.stdin.readline
 
-path = []
-visited = [False] * (n+1)
-def recur(cnt, prev):
-    if cnt == m:
-        print(*path)
+N, M = map(int, input().split())
+used = [0] * (N + 1)
+
+def nm(idx, path):
+    if idx == N + 1:
+        if len(path) == M:
+            print(*path[:])
         return
     
-    for i in range(prev, n+1):
-        if visited[i]:
-            continue
-        visited[i] = True
-        path.append(i)
-        recur(cnt + 1, i)
-        path.pop()
-        visited[i] = False
-recur(0, 1)
+    nm(idx + 1, path + [idx])
+    nm(idx + 1, path)
+
+nm(1, [])
