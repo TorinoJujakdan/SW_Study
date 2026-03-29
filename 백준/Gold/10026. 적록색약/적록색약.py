@@ -69,4 +69,4 @@ for i in range(n):
             total_ireg += 1
     
 
-print(total_reg, total_ireg)     
+print(total_reg, total_ireg)    
